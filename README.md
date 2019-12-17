@@ -23,10 +23,13 @@ The splash screen is a widget that can be used to show the splash screen.
 
 ### Simple usage
 
-There is just one required param: `onFinish`, a callback that is executed when all animations from the splash screen is over.
+There is just two required params:
+- `onFinish`, a callback that is executed when all animations from the splash screen is over.
+- `theme`, than can be either `FlameSplashTheme.dark` or `FlameSplashTheme.white`.
 
 ```dart
 FlameSplashScreen(
+  theme: FlameSplashTheme.dark,
   onFinish: (BuildContext context) => Navigator.pushNamed(context, '/your-game-initial-screen')
 )
 ```
