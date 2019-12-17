@@ -50,11 +50,12 @@ class _SplashScreenGameState extends State<SplashScreenGame> {
     return Scaffold(
       body: FlameSplashScreen(
         showBefore: (BuildContext context) {
-          return const Text("");
+          return const Text("Before logo");
         },
         showAfter: (BuildContext context) {
-          return const Text("");
+          return const Text("After logo");
         },
+        theme: FlameSplashTheme.dark,
         onFinish: (context) => Navigator.pop(context),
       ),
     );
