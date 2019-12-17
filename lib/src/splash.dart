@@ -10,8 +10,10 @@ class FlameSplashScreen extends StatefulWidget {
     this.showAfter,
     this.controller,
   })  : assert(onFinish != null, 'You have to pass an `onFinish` callback.'),
-        assert(theme != null, 'You have to pass a theme, use `FlameSplashTheme.dark` or `FlameSplashTheme.white`'),
+        assert(theme != null,
+            'You have to pass a theme, use `FlameSplashTheme.dark` or `FlameSplashTheme.white`'),
         super(key: key);
+
   /// Gives extra controller over the splash animation.
   final FlameSplashController controller;
 
@@ -52,13 +54,11 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
   }
 
   void computeSteps() {
-    steps = [widget.theme.mainStep];
-    if (widget.showBefore != null) {
-      steps.insert(0, widget.showBefore);
-    }
-    if (widget.showAfter != null) {
-      steps.add(widget.showAfter);
-    }
+    steps = [
+      if(widget.showBefore != null) widget.showBefore,
+      widget.theme.logoBuilder,
+      if (widget.showAfter != null) widget.showAfter
+    ];
     setState(() {});
   }
 
@@ -71,7 +71,7 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
     super.didUpdateWidget(oldWidget);
     final hasStepsChanged = widget.showBefore != oldWidget.showBefore ||
         widget.showAfter != oldWidget.showAfter ||
-        widget.theme.mainStep != oldWidget.theme.mainStep;
+        widget.theme.logoBuilder != oldWidget.theme.logoBuilder;
     if (hasStepsChanged &&
         controller._state != FlameSplashControllerState.started) {
       computeSteps();

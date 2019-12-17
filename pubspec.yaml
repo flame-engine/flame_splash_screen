@@ -1,11 +1,10 @@
 name: flame_splash_screen
-description: Flame splash screen widget
+description: Style your flame/flutter game with a beautiful splash screen. Simple to use but very customizable.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/flame-engine/flame_splash_screen
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:

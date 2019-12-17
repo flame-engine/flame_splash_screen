@@ -30,7 +30,7 @@ packages:
     source: hosted
     version: "1.14.11"
   flame_splash_screen:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: ".."
       relative: true

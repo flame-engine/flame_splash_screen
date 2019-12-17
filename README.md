@@ -4,7 +4,7 @@
 ![](demogif.gif)
 
 
-Stylish your flame game with a beautiful splash screen.
+Style your flame game with a beautiful splash screen.
 
 This package includes a `FlameSplashScreen` widget. 
 
@@ -40,6 +40,7 @@ You can pass your own logo (or anything else) to be shown before or after the fl
 
 ```dart
 FlameSplashScreen(
+  theme: FlameSplashTheme.dark,
   showBefore: (BuildContext context) {
     return Text("To be shown before flame animation");
   },
@@ -49,17 +50,20 @@ FlameSplashScreen(
 
 ```dart
 FlameSplashScreen(
+  theme: FlameSplashTheme.dark,
   showAfter: (BuildContext context) {
     return Text("To be shown after flame animation");
   },
   onFinish: (BuildContext context) => Navigator.pushNamed(context, '/your-game-initial-screen'),
 )
 ```
- Remember: you can also specify both `showBefore` and `showAfter`.
+ Remember: you can also specify both `showBefore` and `showAfter` at the same time.
 
 #### Changing theme
 
 By default the splash screen has a dark background. You can Change it by specifying the `white` theme.
+
+Aside from `FlameSplashTheme.dark`, you can pass `FlameSplashTheme.white` for a white background.
 
 ```dart
 FlameSplashScreen(
@@ -67,6 +71,8 @@ FlameSplashScreen(
   onFinish: (BuildContext context) => Navigator.pushNamed(context, '/your-game-initial-screen'),
 )
 ```
+
+You can create your own theme passing a custom logo builder (changing flames logo for another one) and a background decoration
 
 
 ### Usage with controller

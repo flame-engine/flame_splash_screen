@@ -9,9 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flame_splash_screen:
+    path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flame_splash_screen:
-    path: ../
+
