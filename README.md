@@ -1,5 +1,9 @@
 # Flame Splash Screen 
 
+
+![](demogif.gif)
+
+
 Stylish your flame game with a beautiful splash screen.
 
 This package includes a `FlameSplashScreen` widget. 

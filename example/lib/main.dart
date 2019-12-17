@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+  SystemChrome.setEnabledSystemUIOverlays([]);
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -46,10 +50,10 @@ class _SplashScreenGameState extends State<SplashScreenGame> {
     return Scaffold(
       body: FlameSplashScreen(
         showBefore: (BuildContext context) {
-          return const Text("Before logo");
+          return const Text("");
         },
         showAfter: (BuildContext context) {
-          return const Text("After logo");
+          return const Text("");
         },
         onFinish: (context) => Navigator.pop(context),
       ),
