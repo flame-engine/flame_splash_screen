@@ -1,20 +1,34 @@
 part of flame_splash_screen;
 
+/// A stateful widget to show a splash screen animation for flame games
 class FlameSplashScreen extends StatefulWidget {
   const FlameSplashScreen({
     Key key,
     @required this.onFinish,
-    this.theme = FlameSplashTheme.dark,
+    @required this.theme,
     this.showBefore,
     this.showAfter,
     this.controller,
   })  : assert(onFinish != null, 'You have to pass an `onFinish` callback.'),
+        assert(theme != null, 'You have to pass a theme, use `FlameSplashTheme.dark` or `FlameSplashTheme.white`'),
         super(key: key);
-
+  /// Gives extra controller over the splash animation.
   final FlameSplashController controller;
+
+  /// Enables to set a different theme other than the default.
   final FlameSplashTheme theme;
+
+  /// The only required option, callback to be invoked when animation finished
   final ValueChanged<BuildContext> onFinish;
+
+  /// Adds an extra step to the animation showing a widget, can be other logo.
+  ///
+  /// Shown before flame logo.
   final WidgetBuilder showBefore;
+
+  /// Adds an extra step to the animation showing a widget, can be other logo.
+  ///
+  /// Shown after flame logo.
   final WidgetBuilder showAfter;
 
   @override
@@ -38,7 +52,7 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
   }
 
   void computeSteps() {
-    steps = [buildMainLogo];
+    steps = [widget.theme.mainStep];
     if (widget.showBefore != null) {
       steps.insert(0, widget.showBefore);
     }
@@ -57,7 +71,7 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
     super.didUpdateWidget(oldWidget);
     final hasStepsChanged = widget.showBefore != oldWidget.showBefore ||
         widget.showAfter != oldWidget.showAfter ||
-        widget.theme.logo != oldWidget.theme.logo;
+        widget.theme.mainStep != oldWidget.theme.mainStep;
     if (hasStepsChanged &&
         controller._state != FlameSplashControllerState.started) {
       computeSteps();
@@ -92,16 +106,6 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
           );
         },
       )),
-    );
-  }
-
-  Widget buildMainLogo(BuildContext context) {
-    return Image(
-      width: 300,
-      image: AssetImage(
-        widget.theme.logo,
-        package: 'flame_splash_screen',
-      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 part of flame_splash_screen;
 
+/// Controller enables you to start the animation whenever you want with [autoStart] option and
+/// customize animation duration as well.
 class FlameSplashController {
   FlameSplashController({
     Duration fadeInDuration = const Duration(milliseconds: 750),
@@ -13,6 +15,7 @@ class FlameSplashController {
           fadeOutDuration,
         );
 
+  /// Defines if you want to start the animations right after widget mount.
   final bool autoStart;
 
   // internally created
@@ -25,9 +28,10 @@ class FlameSplashController {
   int _stepsAmount = 0;
   VoidCallback _onFinish;
 
+  /// Displays the actual state of the controller regarding the animation.
   FlameSplashControllerState get state => _state;
 
-  /// Method used to start the animation
+  /// Method used to start the animation, do not call if you set [autoStart] to true;
   void start() {
     assert(
       _hasSetup,
