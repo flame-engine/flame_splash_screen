@@ -1,3 +1,3 @@
-# Spalsh screen example app
+# Splash screen example app
 
 Example of usage

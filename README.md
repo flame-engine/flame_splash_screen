@@ -36,7 +36,7 @@ FlameSplashScreen(
 
 #### Adding your own content
 
-You can pass your own logo (or anything else) to be shown before or after the flame's logo.
+You can pass your own logo (or/and anything else) to be shown before or after the flame's logo.
 
 ```dart
 FlameSplashScreen(
@@ -61,7 +61,7 @@ FlameSplashScreen(
 
 #### Changing theme
 
-By default the splash screen has a dark background. You can Change it by specifying the `white` theme.
+By default the splash screen has a dark background. You can change it by specifying the `white` theme.
 
 Aside from `FlameSplashTheme.dark`, you can pass `FlameSplashTheme.white` for a white background.
 
