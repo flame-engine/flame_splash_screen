@@ -55,7 +55,7 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
 
   void computeSteps() {
     steps = [
-      if(widget.showBefore != null) widget.showBefore,
+      if (widget.showBefore != null) widget.showBefore,
       widget.theme.logoBuilder,
       if (widget.showAfter != null) widget.showAfter
     ];
