@@ -1,5 +1,5 @@
 [![Pub](https://img.shields.io/pub/v/flame_splash_screen.svg?style=popout)](https://pub.dartlang.org/packages/flame_splash_screen)
-[![Build Status - Travis](https://img.shields.io/github/workflow/status/flame-engine/flame_splash_screen/Test/master?label=tests)]
+![Build Status - Travis](https://img.shields.io/github/workflow/status/flame-engine/flame_splash_screen/Test/master?label=tests)
 
 
 # Flame Splash Screen 
