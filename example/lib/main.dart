@@ -1,17 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
-  SystemChrome.setEnabledSystemUIOverlays([]);
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: OtherScreen(),
+      home: SplashScreenGame(),
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
     );
@@ -23,10 +21,10 @@ class OtherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          child: const Text("Click on me"),
+        child: ElevatedButton(
+          child: const Text('Come again'),
           onPressed: () {
-            Navigator.push(
+            Navigator.push<void>(
               context,
               MaterialPageRoute(builder: (context) => SplashScreenGame()),
             );
@@ -50,13 +48,16 @@ class _SplashScreenGameState extends State<SplashScreenGame> {
     return Scaffold(
       body: FlameSplashScreen(
         showBefore: (BuildContext context) {
-          return const Text("Before logo");
+          return const Text('Before logo');
         },
         showAfter: (BuildContext context) {
-          return const Text("After logo");
+          return const Text('After logo');
         },
         theme: FlameSplashTheme.dark,
-        onFinish: (context) => Navigator.pop(context),
+        onFinish: (context) => Navigator.pushReplacement<void, void>(
+          context,
+          MaterialPageRoute(builder: (context) => OtherScreen()),
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 name: example
 description: Flame Splash Screen Example
+publish_to: none
 
 version: 1.0.0+1
 
