@@ -94,9 +94,6 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
         child: ValueListenableBuilder<int>(
           valueListenable: controller._stepController,
           builder: (context, currentStep, _) {
-            if (currentStep == null) {
-              return Container();
-            }
             return _SplashScreenStep(
               builder: steps[currentStep],
               durations: controller._durations,
