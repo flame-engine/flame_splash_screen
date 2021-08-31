@@ -8,7 +8,7 @@ class FlameSplashController {
     Duration waitDuration = const Duration(seconds: 2),
     Duration fadeOutDuration = const Duration(milliseconds: 450),
     this.autoStart = true,
-  })  : _stepController = _FlameSplashControllerStep(null),
+  })  : _stepController = _FlameSplashControllerStep(0),
         _durations = _FlameSplashDurations(
           fadeInDuration,
           waitDuration,
@@ -26,7 +26,7 @@ class FlameSplashController {
   FlameSplashControllerState _state = FlameSplashControllerState.idle;
   bool _hasSetup = false;
   int _stepsAmount = 0;
-  VoidCallback _onFinish;
+  late VoidCallback _onFinish;
 
   /// Displays the actual state of the controller regarding the animation.
   FlameSplashControllerState get state => _state;
@@ -61,7 +61,7 @@ class FlameSplashController {
 
   void _tickStep(final int index) async {
     _stepController.value = index;
-    await Future.delayed(_durations.total);
+    await Future<void>.delayed(_durations.total);
     final finished = index >= _stepsAmount - 1;
     if (finished) {
       _state = FlameSplashControllerState.finished;

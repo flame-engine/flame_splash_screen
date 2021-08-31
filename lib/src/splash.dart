@@ -3,19 +3,16 @@ part of flame_splash_screen;
 /// A stateful widget to show a splash screen animation for flame games
 class FlameSplashScreen extends StatefulWidget {
   const FlameSplashScreen({
-    Key key,
-    @required this.onFinish,
-    @required this.theme,
+    Key? key,
+    required this.onFinish,
+    required this.theme,
     this.showBefore,
     this.showAfter,
     this.controller,
-  })  : assert(onFinish != null, 'You have to pass an `onFinish` callback.'),
-        assert(theme != null,
-            'You have to pass a theme, use `FlameSplashTheme.dark` or `FlameSplashTheme.white`'),
-        super(key: key);
+  }) : super(key: key);
 
   /// Gives extra controller over the splash animation.
-  final FlameSplashController controller;
+  final FlameSplashController? controller;
 
   /// Enables to set a different theme other than the default.
   final FlameSplashTheme theme;
@@ -26,12 +23,12 @@ class FlameSplashScreen extends StatefulWidget {
   /// Adds an extra step to the animation showing a widget, can be other logo.
   ///
   /// Shown before flame logo.
-  final WidgetBuilder showBefore;
+  final WidgetBuilder? showBefore;
 
   /// Adds an extra step to the animation showing a widget, can be other logo.
   ///
   /// Shown after flame logo.
-  final WidgetBuilder showAfter;
+  final WidgetBuilder? showAfter;
 
   @override
   _FlameSplashScreenState createState() => _FlameSplashScreenState();
@@ -39,8 +36,8 @@ class FlameSplashScreen extends StatefulWidget {
 
 class _FlameSplashScreenState extends State<FlameSplashScreen> {
   bool _externallyControlled = false;
-  FlameSplashController controller;
-  List<WidgetBuilder> steps;
+  late FlameSplashController controller;
+  late List<WidgetBuilder> steps;
 
   @override
   void initState() {
@@ -54,12 +51,13 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
   }
 
   void computeSteps() {
-    steps = [
-      if (widget.showBefore != null) widget.showBefore,
-      widget.theme.logoBuilder,
-      if (widget.showAfter != null) widget.showAfter
-    ];
-    setState(() {});
+    setState(() {
+      steps = [
+        if (widget.showBefore != null) widget.showBefore!,
+        widget.theme.logoBuilder,
+        if (widget.showAfter != null) widget.showAfter!,
+      ];
+    });
   }
 
   void onFinish() {
@@ -93,26 +91,27 @@ class _FlameSplashScreenState extends State<FlameSplashScreen> {
       constraints: widget.theme.constraints,
       decoration: widget.theme.backgroundDecoration,
       child: Center(
-          child: ValueListenableBuilder<int>(
-        valueListenable: controller._stepController,
-        builder: (context, currentStep, _) {
-          if (currentStep == null) {
-            return Container();
-          }
-          return _SplashScreenStep(
-            builder: steps[currentStep],
-            durations: controller._durations,
-            key: ObjectKey(currentStep),
-          );
-        },
-      )),
+        child: ValueListenableBuilder<int>(
+          valueListenable: controller._stepController,
+          builder: (context, currentStep, _) {
+            return _SplashScreenStep(
+              builder: steps[currentStep],
+              durations: controller._durations,
+              key: ObjectKey(currentStep),
+            );
+          },
+        ),
+      ),
     );
   }
 }
 
 class _SplashScreenStep extends StatefulWidget {
-  const _SplashScreenStep({Key key, this.builder, this.durations})
-      : super(key: key);
+  const _SplashScreenStep({
+    Key? key,
+    required this.builder,
+    required this.durations,
+  }) : super(key: key);
 
   final WidgetBuilder builder;
   final _FlameSplashDurations durations;
@@ -123,8 +122,8 @@ class _SplashScreenStep extends StatefulWidget {
 
 class __SplashScreenStepState extends State<_SplashScreenStep>
     with TickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> opacityAnimation;
+  late AnimationController controller;
+  late Animation<double> opacityAnimation;
   double opacity = 0.0;
 
   @override
@@ -158,7 +157,7 @@ class __SplashScreenStepState extends State<_SplashScreenStep>
       ..value = 0.0
       ..duration = widget.durations.fadeInDuration;
     await controller.forward();
-    await Future.delayed(widget.durations.waitDuration);
+    await Future<void>.delayed(widget.durations.waitDuration);
     controller
       ..value = 1.0
       ..duration = widget.durations.fadeOutDuration

@@ -1,6 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flame_splash_screen/flame_splash_screen.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class OnFinishContainer {
@@ -11,13 +10,14 @@ class MockOnFinish extends Mock implements OnFinishContainer {}
 
 void main() {
   group('Without autostart', () {
-    FlameSplashController controller;
+    late FlameSplashController controller;
     setUp(() {
       controller = FlameSplashController(
-          fadeInDuration: Duration(milliseconds: 500),
-          fadeOutDuration: Duration(milliseconds: 500),
-          waitDuration: Duration(milliseconds: 500),
-          autoStart: false);
+        fadeInDuration: const Duration(milliseconds: 500),
+        fadeOutDuration: const Duration(milliseconds: 500),
+        waitDuration: const Duration(milliseconds: 500),
+        autoStart: false,
+      );
     });
     test('dont let start before setup', () async {
       expect(() => controller.start(), throwsAssertionError);
@@ -43,13 +43,13 @@ void main() {
     });
   });
   group('With autostart', () {
-    FlameSplashController controller;
+    late FlameSplashController controller;
     setUp(() {
       controller = FlameSplashController(
-          fadeInDuration: Duration(milliseconds: 500),
-          fadeOutDuration: Duration(milliseconds: 500),
-          waitDuration: Duration(milliseconds: 500),
-          autoStart: true);
+        fadeInDuration: const Duration(milliseconds: 500),
+        fadeOutDuration: const Duration(milliseconds: 500),
+        waitDuration: const Duration(milliseconds: 500),
+      );
     });
     test('Started automatically', () {
       controller.setup(1, () {});
