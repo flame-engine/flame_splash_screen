@@ -13,8 +13,6 @@ dependencies:
 
 dev_dependencies:
   dart_code_metrics: ^3.2.2
-  flame_lint:
-    git: https://github.com/flame-engine/flame_lint
   mockito: ^5.0.9
   flutter_test:
     sdk: flutter
