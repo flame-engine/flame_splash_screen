@@ -2,6 +2,7 @@ part of flame_splash_screen;
 
 /// A stateful widget to show a splash screen animation for flame games
 class FlameSplashScreen extends StatefulWidget {
+  /// Creates a [FlameSplashScreen].
   const FlameSplashScreen({
     Key? key,
     required this.onFinish,

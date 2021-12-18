@@ -1,13 +1,17 @@
-[![Pub](https://img.shields.io/pub/v/flame_splash_screen.svg?style=popout)](https://pub.dartlang.org/packages/flame_splash_screen)
-![Build Status - Travis](https://img.shields.io/github/workflow/status/flame-engine/flame_splash_screen/Test/master?label=tests)
-
-
 # Flame Splash Screen 
 
-![](demogif.gif)
+<p align="center">
+  <a title="Pub" href="https://pub.dartlang.org/packages/flame_splash_screen"><img src="https://img.shields.io/pub/v/flame_splash_screen.svg?style=popout" /></a>
+  <img src="https://github.com/flame-engine/flame_splash_screen/workflows/cicd/badge.svg?branch=main&event=push" alt="Test" />
+  <a title="Discord" href="https://discord.gg/pxrBmy4" ><img src="https://img.shields.io/discord/509714518008528896.svg" /></a>
+</p>
 
 
-Style your flame game with a beautiful splash screen.
+<p align="center">
+  <img src="demogif.gif" />
+</p>
+
+Style your [Flame](https://github.com/flame-engine/flame) game with a beautiful splash screen.
 
 This package includes a `FlameSplashScreen` widget. 
 

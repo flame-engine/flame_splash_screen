@@ -3,6 +3,7 @@ part of flame_splash_screen;
 /// Controller enables you to start the animation whenever you want with [autoStart] option and
 /// customize animation duration as well.
 class FlameSplashController {
+  /// Creates a [FlameSplashController].
   FlameSplashController({
     Duration fadeInDuration = const Duration(milliseconds: 750),
     Duration waitDuration = const Duration(seconds: 2),
@@ -47,6 +48,8 @@ class FlameSplashController {
   }
 
   @visibleForTesting
+
+  /// Called by the [start] method; this is only exposed for testing purposes.
   void setup(
     int steps,
     VoidCallback onFinish,
@@ -71,12 +74,25 @@ class FlameSplashController {
     _tickStep(index + 1);
   }
 
+  /// Properly disposes of this controller.
+  /// Must be called after no longer used.
   void dispose() {
     _stepController.dispose();
   }
 }
 
-enum FlameSplashControllerState { idle, started, finished }
+/// Represents the state of the splash screen.
+enum FlameSplashControllerState {
+  /// Not started yet, but ready to start.
+  /// Note that if autoStart is set, this stage will be skipped.
+  idle,
+
+  /// Started and currently running through the steps.
+  started,
+
+  /// Finished to run through all steps.
+  finished,
+}
 
 class _FlameSplashControllerStep extends ValueNotifier<int> {
   _FlameSplashControllerStep(int value) : super(value);
