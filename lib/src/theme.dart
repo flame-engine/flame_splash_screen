@@ -1,6 +1,10 @@
 part of flame_splash_screen;
 
+/// This widget builds up the Flame logo composed of 3 layers,
+/// that are rendered via separate PNG files under the assets directory.
 class AnimatedLogo extends AnimatedWidget {
+  /// Create this widget providing the animation parameter to control
+  /// the opacity of the flame.
   const AnimatedLogo({
     Key? key,
     required Animation<double> animation,
@@ -36,7 +40,10 @@ class AnimatedLogo extends AnimatedWidget {
   }
 }
 
+/// Creates and controls an [AnimatedLogo], making sure to provide the required
+/// animation and to properly dispose of itself after usage.
 class LogoComposite extends StatefulWidget {
+  /// Creates a [LogoComposite].
   const LogoComposite({Key? key}) : super(key: key);
 
   @override
@@ -79,15 +86,17 @@ class _LogoCompositeState extends State<LogoComposite>
 }
 
 Widget _logoBuilder(BuildContext context) {
-  return LayoutBuilder(builder: (context, constraints) {
-    return FractionalTranslation(
-      translation: const Offset(0, -0.25),
-      child: ConstrainedBox(
-        constraints: BoxConstraints.loose(const Size(300, 300)),
-        child: const LogoComposite(),
-      ),
-    );
-  });
+  return LayoutBuilder(
+    builder: (context, constraints) {
+      return FractionalTranslation(
+        translation: const Offset(0, -0.25),
+        child: ConstrainedBox(
+          constraints: BoxConstraints.loose(const Size(300, 300)),
+          child: const LogoComposite(),
+        ),
+      );
+    },
+  );
 }
 
 /// Wraps the splash screen layout options
@@ -101,17 +110,25 @@ class FlameSplashTheme {
     this.constraints = const BoxConstraints.expand(),
   });
 
+  /// Decoration to be applied to the widget underneath the Flame logo.
+  /// It can be used to set the background colour, among other parameters.
   final BoxDecoration backgroundDecoration;
+
+  /// A lambda to build the widget representing the logo itself.
+  /// By default this will be wired to use the [LogoComposite] widget.
   final WidgetBuilder logoBuilder;
 
   /// Th constraints of the outside box, defaults to [BoxConstraints.expand].
   final BoxConstraints constraints;
 
+  /// One of the two default themes provided; this is optimal of light mode
+  /// apps.
   static FlameSplashTheme white = const FlameSplashTheme(
     backgroundDecoration: BoxDecoration(color: Color(0xFFFFFFFF)),
     logoBuilder: _logoBuilder,
   );
 
+  /// One of the two default themes provided; this is optimal of dark mode apps.
   static FlameSplashTheme dark = const FlameSplashTheme(
     backgroundDecoration: BoxDecoration(color: Color(0xFF000000)),
     logoBuilder: _logoBuilder,
