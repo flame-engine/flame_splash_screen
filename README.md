@@ -1,3 +1,6 @@
+> **Warning**
+> This repository is archived and its development has moved to the [flame_monorepo](https://github.com/flame-engine/flame/tree/main/packages/flame_splash_screen).
+
 # Flame Splash Screen 
 
 <p align="center">
